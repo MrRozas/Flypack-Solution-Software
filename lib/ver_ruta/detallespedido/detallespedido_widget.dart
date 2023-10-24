@@ -213,7 +213,9 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),
                                                 border: Border.all(
-                                                  color: Color(0xFF6F61EF),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .celticBlue,
                                                   width: 2.0,
                                                 ),
                                               ),
@@ -271,7 +273,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                             fontFamily:
                                                                 'Plus Jakarta Sans',
                                                             color: Color(
-                                                                0xFF6F61EF),
+                                                                0xFF027DC3),
                                                             fontSize: 16.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -285,18 +287,21 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       '+569 0000 5555',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Plus Jakarta Sans',
-                                                            color: Color(
-                                                                0xFF6F61EF),
-                                                            fontSize: 16.0,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Plus Jakarta Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .celticBlue,
+                                                                fontSize: 16.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
                                                     ),
                                                   ),
                                                 ],
@@ -418,7 +423,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFF4B39EF),
+                                                                                FlutterFlowTheme.of(context).celticBlue,
                                                                             borderRadius:
                                                                                 BorderRadius.circular(4.0),
                                                                           ),
@@ -526,7 +531,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0xFF4B39EF),
+                                                                                FlutterFlowTheme.of(context).celticBlue,
                                                                             borderRadius:
                                                                                 BorderRadius.circular(4.0),
                                                                           ),

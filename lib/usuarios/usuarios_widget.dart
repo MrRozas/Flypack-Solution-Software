@@ -263,7 +263,9 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                                         fontFamily:
                                                             'Plus Jakarta Sans',
                                                         color:
-                                                            Color(0xFF4B39EF),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tuftsBlue,
                                                         fontSize: 14.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -396,8 +398,9 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                                         .override(
                                                           fontFamily:
                                                               'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF4B39EF),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tuftsBlue,
                                                           fontSize: 14.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -520,8 +523,9 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                                         .override(
                                                           fontFamily:
                                                               'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF4B39EF),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tuftsBlue,
                                                           fontSize: 14.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -644,8 +648,9 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                                         .override(
                                                           fontFamily:
                                                               'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF4B39EF),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tuftsBlue,
                                                           fontSize: 14.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -768,8 +773,9 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                                         .override(
                                                           fontFamily:
                                                               'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF4B39EF),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tuftsBlue,
                                                           fontSize: 14.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -892,8 +898,9 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                                         .override(
                                                           fontFamily:
                                                               'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF4B39EF),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tuftsBlue,
                                                           fontSize: 14.0,
                                                           fontWeight:
                                                               FontWeight.normal,

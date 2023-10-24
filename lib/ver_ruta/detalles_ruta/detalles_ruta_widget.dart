@@ -439,7 +439,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                           fontFamily:
                                                                               'Readex Pro',
                                                                           color:
-                                                                              Color(0xFF4B39EF),
+                                                                              Color(0xFF006EAA),
                                                                           fontSize:
                                                                               12.0,
                                                                           fontWeight:
@@ -664,7 +664,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         color: Color(
-                                                                            0xFF4B39EF),
+                                                                            0xFF0051A8),
                                                                         fontSize:
                                                                             12.0,
                                                                         fontWeight:
@@ -884,7 +884,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         color: Color(
-                                                                            0xFF4B39EF),
+                                                                            0xFF0051A8),
                                                                         fontSize:
                                                                             12.0,
                                                                         fontWeight:
@@ -1104,7 +1104,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         color: Color(
-                                                                            0xFF4B39EF),
+                                                                            0xFF0051A8),
                                                                         fontSize:
                                                                             12.0,
                                                                         fontWeight:
@@ -1324,7 +1324,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         color: Color(
-                                                                            0xFF4B39EF),
+                                                                            0xFF0051A8),
                                                                         fontSize:
                                                                             12.0,
                                                                         fontWeight:
@@ -1544,7 +1544,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         color: Color(
-                                                                            0xFF4B39EF),
+                                                                            0xFF0051A8),
                                                                         fontSize:
                                                                             12.0,
                                                                         fontWeight:
@@ -1764,7 +1764,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                                                         fontFamily:
                                                                             'Readex Pro',
                                                                         color: Color(
-                                                                            0xFF4B39EF),
+                                                                            0xFF0051A8),
                                                                         fontSize:
                                                                             12.0,
                                                                         fontWeight:
@@ -2362,7 +2362,7 @@ class _DetallesRutaWidgetState extends State<DetallesRutaWidget> {
                                       width: 80.0,
                                       child: Divider(
                                         thickness: 5.0,
-                                        color: Color(0xCC15D3A5),
+                                        color: Color(0xFF009FFF),
                                       ),
                                     ),
                                     Row(

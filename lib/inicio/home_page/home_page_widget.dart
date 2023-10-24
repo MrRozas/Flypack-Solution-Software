@@ -54,7 +54,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         key: scaffoldKey,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryText,
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -156,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
-                            color: Color(0xFF101213),
+                            color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
@@ -167,11 +167,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                             elevation: 0.0,
                             borderSide: BorderSide(
-                              color: Color(0xFF101213),
+                              color: FlutterFlowTheme.of(context).primary,
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(50.0),
-                            hoverColor: Color(0xFF101213),
+                            hoverColor: Color(0xFF00479B),
+                            hoverBorderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
                             hoverTextColor: Colors.white,
                           ),
                         ),
@@ -233,7 +237,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
-                            color: Color(0xFF4B39EF),
+                            color: Color(0xFF0051A8),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
@@ -244,7 +248,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                             elevation: 0.0,
                             borderSide: BorderSide(
-                              color: Color(0xFF4B39EF),
+                              color: Color(0xE90051A8),
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(50.0),

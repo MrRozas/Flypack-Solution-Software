@@ -202,7 +202,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     0.0, 12.0, 0.0, 12.0),
                                             child: Icon(
                                               Icons.chat_bubble_rounded,
-                                              color: Color(0xFF4B39EF),
+                                              color: Color(0xFF009FFF),
                                               size: 24.0,
                                             ),
                                           ),
@@ -218,7 +218,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   .override(
                                                     fontFamily:
                                                         'Plus Jakarta Sans',
-                                                    color: Color(0xFF4B39EF),
+                                                    color: Color(0xFF006EAA),
                                                     fontSize: 14.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -248,7 +248,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     0.0, 12.0, 0.0, 12.0),
                                             child: Icon(
                                               Icons.call_rounded,
-                                              color: Color(0xFF4B39EF),
+                                              color: Color(0xFF009FFF),
                                               size: 24.0,
                                             ),
                                           ),
@@ -264,7 +264,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   .override(
                                                     fontFamily:
                                                         'Plus Jakarta Sans',
-                                                    color: Color(0xFF4B39EF),
+                                                    color: Color(0xFF0051A8),
                                                     fontSize: 14.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -309,9 +309,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Playfair Display',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                              color: Color(0xFF027DC3),
                                             ),
                                       ),
                                     ),
@@ -374,7 +372,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF4B39EF),
+                            color: Color(0xFF0051A8),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
