@@ -73,9 +73,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           title: Text(
             'Home Page',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Urbanist',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           actions: [],
@@ -142,6 +143,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             16.0, 12.0, 16.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
+                            // Action 1
+
                             context.pushNamed('CreateRoute');
                           },
                           text: 'Crea una nueva ruta',
@@ -171,7 +174,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(50.0),
-                            hoverColor: Color(0xFF00479B),
+                            hoverColor: Color(0xC90051A8),
                             hoverBorderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).primary,
                               width: 2.0,
@@ -239,10 +242,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 0.0, 12.0, 0.0),
                             color: Color(0xFF0051A8),
                             textStyle: FlutterFlowTheme.of(context)
-                                .titleMedium
+                                .titleLarge
                                 .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: Colors.white,
+                                  fontFamily: 'Urbanist',
+                                  color: FlutterFlowTheme.of(context).info,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -252,7 +255,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(50.0),
-                            hoverColor: Color(0xFFE0E3E7),
+                            hoverColor: Color(0xC90051A8),
                           ),
                         ),
                       ),
@@ -284,10 +287,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .labelLarge
                                 .override(
-                                  fontFamily: 'Plus Jakarta Sans',
+                                  fontFamily: 'Readex Pro',
                                   color: Color(0xFF57636C),
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.normal,
                                 ),
                           ),
                         ),

@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -13,7 +14,12 @@ import 'detallespedido_model.dart';
 export 'detallespedido_model.dart';
 
 class DetallespedidoWidget extends StatefulWidget {
-  const DetallespedidoWidget({Key? key}) : super(key: key);
+  const DetallespedidoWidget({
+    Key? key,
+    required this.datospedido,
+  }) : super(key: key);
+
+  final PedidosRecord? datospedido;
 
   @override
   _DetallespedidoWidgetState createState() => _DetallespedidoWidgetState();
@@ -124,11 +130,12 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
             },
           ),
           title: Text(
-            'Page Title',
+            'Detalles pedido',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Urbanist',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           actions: [],
@@ -187,7 +194,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                           fontFamily: 'Outfit',
                                           color: Color(0xFF15161E),
                                           fontSize: 24.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                   ),
                                 ),
@@ -209,7 +216,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                               width: 90.0,
                                               height: 111.0,
                                               decoration: BoxDecoration(
-                                                color: Color(0x4D9489F5),
+                                                color: Color(0xC90051A8),
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),
                                                 border: Border.all(
@@ -232,26 +239,37 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Randy Peterson',
+                                                    '${valueOrDefault<String>(
+                                                      widget.datospedido
+                                                          ?.nombrePropietario,
+                                                      'Sin nombre',
+                                                    )} ${valueOrDefault<String>(
+                                                      widget.datospedido
+                                                          ?.apellidoPropietario,
+                                                      '.',
+                                                    )}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displaySmall
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Readex Pro',
                                                           color:
                                                               Color(0xFF15161E),
-                                                          fontSize: 32.0,
+                                                          fontSize: 26.0,
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                              FontWeight.w500,
                                                         ),
                                                   ),
                                                   Text(
-                                                    'Empresa',
+                                                    widget.datospedido!
+                                                        .rutPropietario,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displaySmall
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily:
+                                                              'Readex Pro',
                                                           color:
                                                               Color(0xFF15161E),
                                                           fontSize: 16.0,
@@ -266,18 +284,21 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       'juanperez@gmail.com',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Plus Jakarta Sans',
-                                                            color: Color(
-                                                                0xFF027DC3),
-                                                            fontSize: 16.0,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .carolinaBlue,
+                                                                fontSize: 16.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
                                                     ),
                                                   ),
                                                   Padding(
@@ -293,7 +314,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Plus Jakarta Sans',
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .celticBlue,
@@ -449,7 +470,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                                 child: Text(
                                                                                   'Direccion',
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                        fontFamily: 'Plus Jakarta Sans',
+                                                                                        fontFamily: 'Readex Pro',
                                                                                         color: Color(0xFF57636C),
                                                                                         fontSize: 12.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -457,9 +478,12 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                                 ),
                                                                               ),
                                                                               Text(
-                                                                                'Av. Diag. Las Torres 2640, 7941169 Penalolen, Peñalolén, Región Metropolitana',
+                                                                                valueOrDefault<String>(
+                                                                                  widget.datospedido?.direccion,
+                                                                                  '0',
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                      fontFamily: 'Plus Jakarta Sans',
+                                                                                      fontFamily: 'Readex Pro',
                                                                                       color: Color(0xFF57636C),
                                                                                       fontSize: 14.0,
                                                                                       fontWeight: FontWeight.w500,
@@ -557,7 +581,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                                 child: Text(
                                                                                   'Notas del Pedido',
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                        fontFamily: 'Plus Jakarta Sans',
+                                                                                        fontFamily: 'Readex Pro',
                                                                                         color: Color(0xFF57636C),
                                                                                         fontSize: 12.0,
                                                                                         fontWeight: FontWeight.w500,
@@ -565,9 +589,12 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                                 ),
                                                                               ),
                                                                               Text(
-                                                                                'Task Description here this one is really long and it goes over maybe? And goes to two lines.',
+                                                                                valueOrDefault<String>(
+                                                                                  widget.datospedido?.entraInfo,
+                                                                                  'Sin Informacion Extra',
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                      fontFamily: 'Plus Jakarta Sans',
+                                                                                      fontFamily: 'Readex Pro',
                                                                                       color: Color(0xFF57636C),
                                                                                       fontSize: 14.0,
                                                                                       fontWeight: FontWeight.w500,
@@ -653,12 +680,11 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                       borderRadius: 20.0,
                                       borderWidth: 1.0,
                                       buttonSize: 46.0,
-                                      fillColor:
-                                          FlutterFlowTheme.of(context).accent1,
+                                      fillColor: Color(0xC90051A8),
                                       icon: Icon(
                                         Icons.camera_alt,
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                            .primaryBackground,
                                         size: 24.0,
                                       ),
                                       onPressed: () {

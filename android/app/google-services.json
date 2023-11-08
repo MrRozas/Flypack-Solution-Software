@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "737074354006",
+    "project_id": "testruta-f324b",
+    "storage_bucket": "testruta-f324b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737074354006:android:19072a74f3f9358740e8f7",
+        "android_client_info": {
+          "package_name": "com.mycompany.flypack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1hXeQaSZVUJRegp9EgK-j2K0ou07tfzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737074354006:android:4f8f726b9ff85ed640e8f7",
+        "android_client_info": {
+          "package_name": "com.mycompany.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1hXeQaSZVUJRegp9EgK-j2K0ou07tfzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

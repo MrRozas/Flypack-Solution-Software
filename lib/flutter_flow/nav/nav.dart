@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -66,9 +67,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DetallesRuta',
           path: '/detallesRuta',
+          asyncParams: {
+            'pedido': getDoc(['Pedidos'], PedidosRecord.fromSnapshot),
+          },
           builder: (context, params) => NavBarPage(
             initialPage: '',
-            page: DetallesRutaWidget(),
+            page: DetallesRutaWidget(
+              idruta: params.getParam('idruta', ParamType.int),
+              pedido: params.getParam('pedido', ParamType.Document),
+            ),
           ),
         ),
         FFRoute(
@@ -81,9 +88,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Detallespedido',
           path: '/detallespedido',
+          asyncParams: {
+            'datospedido': getDoc(['Pedidos'], PedidosRecord.fromSnapshot),
+          },
           builder: (context, params) => NavBarPage(
             initialPage: '',
-            page: DetallespedidoWidget(),
+            page: DetallespedidoWidget(
+              datospedido: params.getParam('datospedido', ParamType.Document),
+            ),
           ),
         ),
         FFRoute(
@@ -91,15 +103,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/usuarios',
           builder: (context, params) => NavBarPage(
             initialPage: '',
-            page: UsuariosWidget(),
+            page: UsuariosWidget(
+              docs: params.getParam(
+                  'docs', ParamType.DocumentReference, false, ['User']),
+            ),
           ),
         ),
         FFRoute(
           name: 'Profile',
           path: '/profile',
+          asyncParams: {
+            'user': getDoc(['User'], UserRecord.fromSnapshot),
+          },
           builder: (context, params) => NavBarPage(
             initialPage: '',
-            page: ProfileWidget(),
+            page: ProfileWidget(
+              user: params.getParam('user', ParamType.Document),
+            ),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
@@ -172,6 +192,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -185,11 +206,8 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(
-      param,
-      type,
-      isList,
-    );
+    return deserializeParam<T>(param, type, isList,
+        collectionNamePath: collectionNamePath);
   }
 }
 

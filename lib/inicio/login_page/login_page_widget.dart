@@ -28,6 +28,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
+
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
   }
@@ -77,9 +78,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
           title: Text(
             'Login Page',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Urbanist',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           actions: [],
@@ -216,16 +218,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 ],
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.20),
+                alignment: AlignmentDirectional(0.00, 0.00),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       'Bienvenido a Flypack',
                       style: FlutterFlowTheme.of(context).titleMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Urbanist',
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             fontSize: 26.0,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
                           ),
                     ),
                     Align(
@@ -443,9 +448,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Urbanist',
                                             color: Colors.white,
                                             fontSize: 16.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                       elevation: 0.0,
                                       borderRadius: BorderRadius.circular(4.0),

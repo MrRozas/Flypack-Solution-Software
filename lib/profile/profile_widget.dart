@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,7 +12,12 @@ import 'profile_model.dart';
 export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({Key? key}) : super(key: key);
+  const ProfileWidget({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
+
+  final UserRecord? user;
 
   @override
   _ProfileWidgetState createState() => _ProfileWidgetState();
@@ -54,7 +60,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         key: scaffoldKey,
         backgroundColor: Color(0xFFF1F4F8),
         appBar: AppBar(
-          backgroundColor: Color(0xFFF1F4F8),
+          backgroundColor: Color(0xFF0051A8),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -63,21 +69,24 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: Color(0xFF101213),
+              color: FlutterFlowTheme.of(context).primaryBackground,
               size: 30.0,
             ),
             onPressed: () async {
               context.pop();
             },
           ),
-          title: Text(
-            'Usuario',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Plus Jakarta Sans',
-                  color: Color(0xFF101213),
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w500,
-                ),
+          title: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(80.0, 0.0, 0.0, 0.0),
+            child: Text(
+              'Usuario',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Urbanist',
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
           ),
           actions: [],
           centerTitle: false,
@@ -132,11 +141,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 8.0),
                               child: Text(
-                                'Randy Rudolph',
+                                valueOrDefault<String>(
+                                  widget.user?.displayName,
+                                  'Nombre del usuario',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
-                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontFamily: 'Readex Pro',
                                       color: Color(0xFF101213),
                                       fontSize: 24.0,
                                       fontWeight: FontWeight.w500,
@@ -144,11 +156,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                             ),
                             Text(
-                              'ID Usuario',
+                              valueOrDefault<String>(
+                                widget.user?.uid,
+                                'ID del usuario',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Readex Pro',
                                     color: Color(0xFF101213),
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.w500,
@@ -202,7 +217,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     0.0, 12.0, 0.0, 12.0),
                                             child: Icon(
                                               Icons.chat_bubble_rounded,
-                                              color: Color(0xFF009FFF),
+                                              color: Color(0xFF0051A8),
                                               size: 24.0,
                                             ),
                                           ),
@@ -216,8 +231,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily:
-                                                        'Plus Jakarta Sans',
+                                                    fontFamily: 'Readex Pro',
                                                     color: Color(0xFF006EAA),
                                                     fontSize: 14.0,
                                                     fontWeight: FontWeight.w500,
@@ -248,7 +262,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     0.0, 12.0, 0.0, 12.0),
                                             child: Icon(
                                               Icons.call_rounded,
-                                              color: Color(0xFF009FFF),
+                                              color: Color(0xFF0051A8),
                                               size: 24.0,
                                             ),
                                           ),
@@ -262,8 +276,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily:
-                                                        'Plus Jakarta Sans',
+                                                    fontFamily: 'Readex Pro',
                                                     color: Color(0xFF0051A8),
                                                     fontSize: 14.0,
                                                     fontWeight: FontWeight.w500,
@@ -286,8 +299,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     Divider(
                                       height: 30.0,
                                       thickness: 0.5,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: Color(0xFFAEB3B6),
                                     ),
                                     Text(
                                       'Contacto',
@@ -295,7 +307,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Playfair Display',
+                                            fontFamily: 'Readex Pro',
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -304,12 +316,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Text(
-                                        '+56 9 1234 5678',
+                                        valueOrDefault<String>(
+                                          widget.user?.phoneNumber,
+                                          'Contacto',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Playfair Display',
-                                              color: Color(0xFF027DC3),
+                                              fontFamily: 'Readex Pro',
+                                              color: Color(0xFF0051A8),
                                             ),
                                       ),
                                     ),
@@ -321,16 +336,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     Divider(
                                       height: 30.0,
                                       thickness: 0.5,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: Color(0xFFAEB3B6),
                                     ),
                                     Text(
-                                      '',
+                                      'Email',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Playfair Display',
+                                            fontFamily: 'Readex Pro',
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -339,11 +353,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Text(
-                                        'Hello World',
+                                        valueOrDefault<String>(
+                                          widget.user?.email,
+                                          'Email',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Playfair Display',
+                                              fontFamily: 'Readex Pro',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
@@ -376,10 +393,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Plus Jakarta Sans',
+                                  fontFamily: 'Urbanist',
                                   color: Colors.white,
                                   fontSize: 16.0,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.bold,
                                 ),
                             borderSide: BorderSide(
                               color: Colors.transparent,
