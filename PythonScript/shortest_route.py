@@ -89,21 +89,14 @@ def getOutput(best_route, diccionario):
     output = []
 
     # Imprime las direcciones intermedias en la mejor ruta.
-    print("Direcciones de la Mejor Ruta en orden:")
+    #print("Direcciones de la Mejor Ruta en orden:")
     for h in best_route:
         if h in diccionario:
             nombre_asociado = diccionario[h]
             output.append(nombre_asociado)
-            print(f"{nombre_asociado}")
+            #print(f"{nombre_asociado}")
     return output
 
-# Función que inicia el programa
-def StartProgram():
-    graph, geolocator = GeoStart()
-    direcciones = readDirections()
-    nodes_in_route, diccionario = getInformatioGraph(direcciones, graph, geolocator)
-    permutations = permute(nodes_in_route)
-    best_route = getRoute(permutations, nodes_in_route, graph)
-    output = getOutput(best_route, diccionario)
 
-StartProgram()
+
+#StartProgram(['Avenida Consistorial 2508, Peñalolén', 'Avenida Pedro de Valdivia 2257, Providencia' ,'Paicaví 2721, La Florida' ,'Av. José Pedro Alessandri 1166', 'Nueva Bilbao 9495, Las Condes'])
