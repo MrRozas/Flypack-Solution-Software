@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -16,10 +17,10 @@ export 'detallespedido_model.dart';
 class DetallespedidoWidget extends StatefulWidget {
   const DetallespedidoWidget({
     Key? key,
-    required this.datospedido,
+    required this.idRuta,
   }) : super(key: key);
 
-  final PedidosRecord? datospedido;
+  final RutaRecord? idRuta;
 
   @override
   _DetallespedidoWidgetState createState() => _DetallespedidoWidgetState();
@@ -239,15 +240,7 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    '${valueOrDefault<String>(
-                                                      widget.datospedido
-                                                          ?.nombrePropietario,
-                                                      'Sin nombre',
-                                                    )} ${valueOrDefault<String>(
-                                                      widget.datospedido
-                                                          ?.apellidoPropietario,
-                                                      '.',
-                                                    )}',
+                                                    'Pedido :${widget.idRuta?.id?.toString()}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displaySmall
@@ -261,21 +254,71 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                               FontWeight.w500,
                                                         ),
                                                   ),
-                                                  Text(
-                                                    widget.datospedido!
-                                                        .rutPropietario,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .displaySmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFF15161E),
-                                                          fontSize: 16.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
+                                                  StreamBuilder<
+                                                      List<PedidosRecord>>(
+                                                    stream: queryPedidosRecord(
+                                                      queryBuilder:
+                                                          (pedidosRecord) =>
+                                                              pedidosRecord
+                                                                  .where(
+                                                        'ID_Ruta',
+                                                        isEqualTo:
+                                                            widget.idRuta?.id,
+                                                      ),
+                                                      singleRecord: true,
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<PedidosRecord>
+                                                          textPedidosRecordList =
+                                                          snapshot.data!;
+                                                      // Return an empty Container when the item does not exist.
+                                                      if (snapshot
+                                                          .data!.isEmpty) {
+                                                        return Container();
+                                                      }
+                                                      final textPedidosRecord =
+                                                          textPedidosRecordList
+                                                                  .isNotEmpty
+                                                              ? textPedidosRecordList
+                                                                  .first
+                                                              : null;
+                                                      return Text(
+                                                        '${textPedidosRecord?.nombrePropietario}${textPedidosRecord?.apellidoPropietario}',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .displaySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              color: Color(
+                                                                  0xFF15161E),
+                                                              fontSize: 16.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                      );
+                                                    },
                                                   ),
                                                   Padding(
                                                     padding:
@@ -479,8 +522,8 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                               ),
                                                                               Text(
                                                                                 valueOrDefault<String>(
-                                                                                  widget.datospedido?.direccion,
-                                                                                  '0',
+                                                                                  widget.idRuta?.direccion,
+                                                                                  'xxxx',
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                       fontFamily: 'Readex Pro',
@@ -588,17 +631,45 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                              Text(
-                                                                                valueOrDefault<String>(
-                                                                                  widget.datospedido?.entraInfo,
-                                                                                  'Sin Informacion Extra',
+                                                                              StreamBuilder<List<PedidosRecord>>(
+                                                                                stream: queryPedidosRecord(
+                                                                                  queryBuilder: (pedidosRecord) => pedidosRecord.where(
+                                                                                    'ID_Ruta',
+                                                                                    isEqualTo: widget.idRuta?.id,
+                                                                                  ),
+                                                                                  singleRecord: true,
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                      fontFamily: 'Readex Pro',
-                                                                                      color: Color(0xFF57636C),
-                                                                                      fontSize: 14.0,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
+                                                                                builder: (context, snapshot) {
+                                                                                  // Customize what your widget looks like when it's loading.
+                                                                                  if (!snapshot.hasData) {
+                                                                                    return Center(
+                                                                                      child: SizedBox(
+                                                                                        width: 50.0,
+                                                                                        height: 50.0,
+                                                                                        child: CircularProgressIndicator(
+                                                                                          valueColor: AlwaysStoppedAnimation<Color>(
+                                                                                            FlutterFlowTheme.of(context).primary,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    );
+                                                                                  }
+                                                                                  List<PedidosRecord> textPedidosRecordList = snapshot.data!;
+                                                                                  // Return an empty Container when the item does not exist.
+                                                                                  if (snapshot.data!.isEmpty) {
+                                                                                    return Container();
+                                                                                  }
+                                                                                  final textPedidosRecord = textPedidosRecordList.isNotEmpty ? textPedidosRecordList.first : null;
+                                                                                  return Text(
+                                                                                    textPedidosRecord!.entraInfo,
+                                                                                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                          fontFamily: 'Readex Pro',
+                                                                                          color: Color(0xFF57636C),
+                                                                                          fontSize: 14.0,
+                                                                                          fontWeight: FontWeight.w500,
+                                                                                        ),
+                                                                                  );
+                                                                                },
                                                                               ),
                                                                             ],
                                                                           ),
@@ -687,8 +758,50 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                             .primaryBackground,
                                         size: 24.0,
                                       ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
+                                      onPressed: () async {
+                                        final selectedMedia =
+                                            await selectMediaWithSourceBottomSheet(
+                                          context: context,
+                                          allowPhoto: true,
+                                        );
+                                        if (selectedMedia != null &&
+                                            selectedMedia.every((m) =>
+                                                validateFileFormat(
+                                                    m.storagePath, context))) {
+                                          setState(() =>
+                                              _model.isDataUploading = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
+
+                                          try {
+                                            selectedUploadedFiles =
+                                                selectedMedia
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                          height: m.dimensions
+                                                              ?.height,
+                                                          width: m.dimensions
+                                                              ?.width,
+                                                          blurHash: m.blurHash,
+                                                        ))
+                                                    .toList();
+                                          } finally {
+                                            _model.isDataUploading = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                              selectedMedia.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFile =
+                                                  selectedUploadedFiles.first;
+                                            });
+                                          } else {
+                                            setState(() {});
+                                            return;
+                                          }
+                                        }
                                       },
                                     ),
                                   ),

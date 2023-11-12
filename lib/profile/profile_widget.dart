@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
@@ -168,127 +167,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.w500,
                                   ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 12.0, 0.0, 0.0),
-                              child: RatingBar.builder(
-                                onRatingUpdate: (newValue) => setState(
-                                    () => _model.ratingBarValue = newValue),
-                                itemBuilder: (context, index) => Icon(
-                                  Icons.star_rounded,
-                                  color: Color(0xFFF3A743),
-                                ),
-                                direction: Axis.horizontal,
-                                initialRating: _model.ratingBarValue ??= 4.0,
-                                unratedColor: Color(0xFFE0E3E7),
-                                itemCount: 5,
-                                itemSize: 24.0,
-                                glowColor: Color(0xFFF3A743),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 12.0, 0.0, 12.0),
-                              child: Container(
-                                width: double.infinity,
-                                height: 70.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  border: Border.all(
-                                    color: Color(0xFFE0E3E7),
-                                    width: 2.0,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 12.0),
-                                            child: Icon(
-                                              Icons.chat_bubble_rounded,
-                                              color: Color(0xFF0051A8),
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 12.0, 0.0),
-                                            child: Text(
-                                              'Chat',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF006EAA),
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 100.0,
-                                      child: VerticalDivider(
-                                        thickness: 1.0,
-                                        indent: 12.0,
-                                        endIndent: 12.0,
-                                        color: Color(0xFFE0E3E7),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 12.0),
-                                            child: Icon(
-                                              Icons.call_rounded,
-                                              color: Color(0xFF0051A8),
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 12.0, 0.0),
-                                            child: Text(
-                                              'Llamar',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF0051A8),
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,

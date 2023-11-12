@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -26,11 +27,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.userEmailController ??= TextEditingController();
+    _model.userEmailFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
   }
 
   @override
@@ -263,8 +264,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       TextFormField(
-                                        controller: _model.textController1,
-                                        focusNode: _model.textFieldFocusNode1,
+                                        controller: _model.userEmailController,
+                                        focusNode: _model.userEmailFocusNode,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText:
@@ -324,15 +325,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
                                         validator: _model
-                                            .textController1Validator
+                                            .userEmailControllerValidator
                                             .asValidator(context),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 0.0),
                                         child: TextFormField(
-                                          controller: _model.textController2,
-                                          focusNode: _model.textFieldFocusNode2,
+                                          controller: _model.passwordController,
+                                          focusNode: _model.passwordFocusNode,
                                           obscureText:
                                               !_model.passwordVisibility,
                                           decoration: InputDecoration(
@@ -411,7 +412,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge,
                                           validator: _model
-                                              .textController2Validator
+                                              .passwordControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -423,16 +424,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       0.0, 26.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed(
-                                        'HomePage',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                          ),
-                                        },
+                                      GoRouter.of(context).prepareAuthEvent();
+
+                                      final user =
+                                          await authManager.signInWithEmail(
+                                        context,
+                                        _model.userEmailController.text,
+                                        _model.passwordController.text,
                                       );
+                                      if (user == null) {
+                                        return;
+                                      }
+
+                                      context.goNamedAuth(
+                                          'CreateRoute', context.mounted);
                                     },
                                     text: 'Sign In',
                                     options: FFButtonOptions(

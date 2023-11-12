@@ -21,11 +21,6 @@ class RutaRecord extends FirestoreRecord {
   int get id => _id ?? 0;
   bool hasId() => _id != null;
 
-  // "Estado" field.
-  String? _estado;
-  String get estado => _estado ?? '';
-  bool hasEstado() => _estado != null;
-
   // "Fecha" field.
   DateTime? _fecha;
   DateTime? get fecha => _fecha;
@@ -36,11 +31,22 @@ class RutaRecord extends FirestoreRecord {
   String get direccion => _direccion ?? '';
   bool hasDireccion() => _direccion != null;
 
+  // "Orden" field.
+  int? _orden;
+  int get orden => _orden ?? 0;
+  bool hasOrden() => _orden != null;
+
+  // "Estado" field.
+  bool? _estado;
+  bool get estado => _estado ?? false;
+  bool hasEstado() => _estado != null;
+
   void _initializeFields() {
     _id = castToType<int>(snapshotData['ID']);
-    _estado = snapshotData['Estado'] as String?;
     _fecha = snapshotData['Fecha'] as DateTime?;
     _direccion = snapshotData['Direccion'] as String?;
+    _orden = castToType<int>(snapshotData['Orden']);
+    _estado = snapshotData['Estado'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -78,16 +84,18 @@ class RutaRecord extends FirestoreRecord {
 
 Map<String, dynamic> createRutaRecordData({
   int? id,
-  String? estado,
   DateTime? fecha,
   String? direccion,
+  int? orden,
+  bool? estado,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'ID': id,
-      'Estado': estado,
       'Fecha': fecha,
       'Direccion': direccion,
+      'Orden': orden,
+      'Estado': estado,
     }.withoutNulls,
   );
 
@@ -100,14 +108,15 @@ class RutaRecordDocumentEquality implements Equality<RutaRecord> {
   @override
   bool equals(RutaRecord? e1, RutaRecord? e2) {
     return e1?.id == e2?.id &&
-        e1?.estado == e2?.estado &&
         e1?.fecha == e2?.fecha &&
-        e1?.direccion == e2?.direccion;
+        e1?.direccion == e2?.direccion &&
+        e1?.orden == e2?.orden &&
+        e1?.estado == e2?.estado;
   }
 
   @override
-  int hash(RutaRecord? e) =>
-      const ListEquality().hash([e?.id, e?.estado, e?.fecha, e?.direccion]);
+  int hash(RutaRecord? e) => const ListEquality()
+      .hash([e?.id, e?.fecha, e?.direccion, e?.orden, e?.estado]);
 
   @override
   bool isValidKey(Object? o) => o is RutaRecord;
