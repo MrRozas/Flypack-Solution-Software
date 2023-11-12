@@ -1,0 +1,7 @@
+Avenida Consistorial 2508, Peñalolén, Provincia de Santiago, Chile
+Avenida Pedro de Valdivia 2257, Providencia, Provincia de Santiago, Chile
+Paicaví 2721, La Florida, Provincia de Santiago, Chile
+Av. José Pedro Alessandri 1166, Ñuñoa, Provincia de Santiago, Chile
+Nueva Bilbao 9495, Las Condes, Región Metropolitana, Chile
+
+/api?Query=Avenida Consistorial 2508, Peñalolén&Query=Avenida Pedro de Valdivia 2257, Providencia&Query=Paicaví 2721, La Florida&Query=Av. José Pedro Alessandri 1166, Ñuñoa&Query=Nueva Bilbao 9495, Las Condes
