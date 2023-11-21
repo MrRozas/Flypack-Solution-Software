@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.13.3
+  html: ^0.15.0
   flutter_localizations:
     sdk: flutter
   auto_size_text: 3.0.0
