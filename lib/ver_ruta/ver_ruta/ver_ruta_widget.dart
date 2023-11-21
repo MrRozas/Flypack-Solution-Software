@@ -1,9 +1,12 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -644,9 +647,109 @@ class _VerRutaWidgetState extends State<VerRutaWidget> {
                                                           AlignmentDirectional(
                                                               -1.00, -1.00),
                                                       child: FFButtonWidget(
-                                                        onPressed: () {
-                                                          print(
-                                                              'Button pressed ...');
+                                                        onPressed: () async {
+                                                          _model.countpp =
+                                                              await queryRutaRecordCount(
+                                                            queryBuilder:
+                                                                (rutaRecord) =>
+                                                                    rutaRecord
+                                                                        .where(
+                                                              'Estado',
+                                                              isEqualTo: false,
+                                                            ),
+                                                          );
+                                                          if (_model.countpp
+                                                                  .toString() ==
+                                                              '0') {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'No falta nada'),
+                                                                  content: Text(
+                                                                      'Todos los pedidos an sido enviados'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                            _model.collectionRuta =
+                                                                await queryRutaRecordOnce(
+                                                              singleRecord:
+                                                                  true,
+                                                            ).then((s) => s
+                                                                    .firstOrNull);
+                                                            await _model
+                                                                .collectionRuta!
+                                                                .reference
+                                                                .delete();
+
+                                                            context.goNamed(
+                                                                'HomePage');
+                                                          } else {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Alerta '),
+                                                                          content:
+                                                                              Text('Tienes pedidos pendientes, ¿Estas seguro que quieres terminar el viaje?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Cancel'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Confirm'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              _model.rutaCollection =
+                                                                  await queryRutaRecordOnce(
+                                                                queryBuilder:
+                                                                    (rutaRecord) =>
+                                                                        rutaRecord
+                                                                            .where(
+                                                                  'Estado',
+                                                                  isEqualTo:
+                                                                      true,
+                                                                ),
+                                                              );
+                                                              await _model
+                                                                  .rutaCollection!
+                                                                  .where((e) =>
+                                                                      e.estado ==
+                                                                      true)
+                                                                  .toList()
+                                                                  .first
+                                                                  .reference
+                                                                  .delete();
+
+                                                              context.goNamed(
+                                                                  'HomePage');
+                                                            }
+                                                          }
+
+                                                          setState(() {});
                                                         },
                                                         text: 'Terminar viaje',
                                                         options:

@@ -79,21 +79,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? CreateRouteWidget() : HomePageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? CreateRouteWidget()
-              : HomePageWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
           name: 'VerRuta',
           path: '/verRuta',
-          builder: (context, params) => VerRutaWidget(
-            estadopordefecto:
-                params.getParam('estadopordefecto', ParamType.String),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: VerRutaWidget(
+              estadopordefecto:
+                  params.getParam('estadopordefecto', ParamType.String),
+            ),
           ),
         ),
         FFRoute(
@@ -104,12 +106,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         ),
         FFRoute(
           name: 'CreateRoute',
           path: '/createRoute',
-          builder: (context, params) => CreateRouteWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'CreateRoute')
+              : CreateRouteWidget(),
         ),
         FFRoute(
           name: 'Detallespedido',
@@ -117,16 +123,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           asyncParams: {
             'idRuta': getDoc(['RUTA'], RutaRecord.fromSnapshot),
           },
-          builder: (context, params) => DetallespedidoWidget(
-            idRuta: params.getParam('idRuta', ParamType.Document),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: DetallespedidoWidget(
+              idRuta: params.getParam('idRuta', ParamType.Document),
+            ),
           ),
         ),
         FFRoute(
           name: 'Usuarios',
           path: '/usuarios',
-          builder: (context, params) => UsuariosWidget(
-            docs: params
-                .getParam('docs', ParamType.DocumentReference, false, ['User']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: UsuariosWidget(
+              docs: params.getParam(
+                  'docs', ParamType.DocumentReference, false, ['User']),
+            ),
           ),
         ),
         FFRoute(
@@ -135,14 +147,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           asyncParams: {
             'user': getDoc(['User'], UserRecord.fromSnapshot),
           },
-          builder: (context, params) => ProfileWidget(
-            user: params.getParam('user', ParamType.Document),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: ProfileWidget(
+              user: params.getParam('user', ParamType.Document),
+            ),
           ),
         ),
         FFRoute(
-          name: 'Testing',
+          name: 'testing',
           path: '/testing',
           builder: (context, params) => TestingWidget(),
+        ),
+        FFRoute(
+          name: 'exportar_ruta',
+          path: '/exportarRuta',
+          builder: (context, params) => ExportarRutaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -309,7 +329,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/homePage';
+            return '/loginPage';
           }
           return null;
         },

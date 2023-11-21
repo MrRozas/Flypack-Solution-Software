@@ -21,11 +21,6 @@ class RutaRecord extends FirestoreRecord {
   int get id => _id ?? 0;
   bool hasId() => _id != null;
 
-  // "Fecha" field.
-  DateTime? _fecha;
-  DateTime? get fecha => _fecha;
-  bool hasFecha() => _fecha != null;
-
   // "Direccion" field.
   String? _direccion;
   String get direccion => _direccion ?? '';
@@ -43,7 +38,6 @@ class RutaRecord extends FirestoreRecord {
 
   void _initializeFields() {
     _id = castToType<int>(snapshotData['ID']);
-    _fecha = snapshotData['Fecha'] as DateTime?;
     _direccion = snapshotData['Direccion'] as String?;
     _orden = castToType<int>(snapshotData['Orden']);
     _estado = snapshotData['Estado'] as bool?;
@@ -84,7 +78,6 @@ class RutaRecord extends FirestoreRecord {
 
 Map<String, dynamic> createRutaRecordData({
   int? id,
-  DateTime? fecha,
   String? direccion,
   int? orden,
   bool? estado,
@@ -92,7 +85,6 @@ Map<String, dynamic> createRutaRecordData({
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'ID': id,
-      'Fecha': fecha,
       'Direccion': direccion,
       'Orden': orden,
       'Estado': estado,
@@ -108,15 +100,14 @@ class RutaRecordDocumentEquality implements Equality<RutaRecord> {
   @override
   bool equals(RutaRecord? e1, RutaRecord? e2) {
     return e1?.id == e2?.id &&
-        e1?.fecha == e2?.fecha &&
         e1?.direccion == e2?.direccion &&
         e1?.orden == e2?.orden &&
         e1?.estado == e2?.estado;
   }
 
   @override
-  int hash(RutaRecord? e) => const ListEquality()
-      .hash([e?.id, e?.fecha, e?.direccion, e?.orden, e?.estado]);
+  int hash(RutaRecord? e) =>
+      const ListEquality().hash([e?.id, e?.direccion, e?.orden, e?.estado]);
 
   @override
   bool isValidKey(Object? o) => o is RutaRecord;

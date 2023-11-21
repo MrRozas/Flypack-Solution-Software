@@ -1,10 +1,12 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -759,49 +761,24 @@ class _DetallespedidoWidgetState extends State<DetallespedidoWidget>
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
-                                        final selectedMedia =
-                                            await selectMediaWithSourceBottomSheet(
-                                          context: context,
-                                          allowPhoto: true,
-                                        );
-                                        if (selectedMedia != null &&
-                                            selectedMedia.every((m) =>
-                                                validateFileFormat(
-                                                    m.storagePath, context))) {
-                                          setState(() =>
-                                              _model.isDataUploading = true);
-                                          var selectedUploadedFiles =
-                                              <FFUploadedFile>[];
+                                        _model.documnets =
+                                            await queryRutaRecordOnce(
+                                          queryBuilder: (rutaRecord) =>
+                                              rutaRecord.where(
+                                            'ID',
+                                            isEqualTo: widget.idRuta?.id,
+                                          ),
+                                          singleRecord: true,
+                                        ).then((s) => s.firstOrNull);
 
-                                          try {
-                                            selectedUploadedFiles =
-                                                selectedMedia
-                                                    .map((m) => FFUploadedFile(
-                                                          name: m.storagePath
-                                                              .split('/')
-                                                              .last,
-                                                          bytes: m.bytes,
-                                                          height: m.dimensions
-                                                              ?.height,
-                                                          width: m.dimensions
-                                                              ?.width,
-                                                          blurHash: m.blurHash,
-                                                        ))
-                                                    .toList();
-                                          } finally {
-                                            _model.isDataUploading = false;
-                                          }
-                                          if (selectedUploadedFiles.length ==
-                                              selectedMedia.length) {
-                                            setState(() {
-                                              _model.uploadedLocalFile =
-                                                  selectedUploadedFiles.first;
-                                            });
-                                          } else {
-                                            setState(() {});
-                                            return;
-                                          }
-                                        }
+                                        await _model.documnets!.reference
+                                            .update(createRutaRecordData(
+                                          estado: true,
+                                        ));
+
+                                        context.pushNamed('VerRuta');
+
+                                        setState(() {});
                                       },
                                     ),
                                   ),

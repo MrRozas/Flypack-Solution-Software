@@ -46,6 +46,11 @@ class UserRecord extends FirestoreRecord {
   String get userRole => _userRole ?? '';
   bool hasUserRole() => _userRole != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -53,6 +58,7 @@ class UserRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _userRole = snapshotData['user_role'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +101,7 @@ Map<String, dynamic> createUserRecordData({
   String? uid,
   String? phoneNumber,
   String? userRole,
+  DateTime? createdTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +111,7 @@ Map<String, dynamic> createUserRecordData({
       'uid': uid,
       'phone_number': phoneNumber,
       'user_role': userRole,
+      'created_time': createdTime,
     }.withoutNulls,
   );
 
@@ -120,7 +128,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.userRole == e2?.userRole;
+        e1?.userRole == e2?.userRole &&
+        e1?.createdTime == e2?.createdTime;
   }
 
   @override
@@ -130,7 +139,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.photoUrl,
         e?.uid,
         e?.phoneNumber,
-        e?.userRole
+        e?.userRole,
+        e?.createdTime
       ]);
 
   @override

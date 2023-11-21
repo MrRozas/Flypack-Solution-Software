@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -424,20 +423,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       0.0, 26.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      GoRouter.of(context).prepareAuthEvent();
-
-                                      final user =
-                                          await authManager.signInWithEmail(
-                                        context,
-                                        _model.userEmailController.text,
-                                        _model.passwordController.text,
-                                      );
-                                      if (user == null) {
-                                        return;
-                                      }
-
-                                      context.goNamedAuth(
-                                          'CreateRoute', context.mounted);
+                                      context.pushNamed('HomePage');
                                     },
                                     text: 'Sign In',
                                     options: FFButtonOptions(

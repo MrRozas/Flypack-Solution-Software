@@ -1,9 +1,6 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -339,23 +336,8 @@ class _CreateRouteWidgetState extends State<CreateRouteWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       FFButtonWidget(
-                        onPressed: () async {
-                          if (_model.formKey.currentState == null ||
-                              !_model.formKey.currentState!.validate()) {
-                            return;
-                          }
-
-                          await RutaRecord.collection.doc().set({
-                            ...createRutaRecordData(
-                              id: int.tryParse(_model.textController2.text),
-                              direccion: _model.textController1.text,
-                            ),
-                            ...mapToFirestore(
-                              {
-                                'Fecha': FieldValue.serverTimestamp(),
-                              },
-                            ),
-                          });
+                        onPressed: () {
+                          print('Button pressed ...');
                         },
                         text: 'Agregar Dirección',
                         options: FFButtonOptions(
